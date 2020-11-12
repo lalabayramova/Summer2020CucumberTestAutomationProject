@@ -32,6 +32,13 @@ public class LoginStepDefinitions {
         System.out.println("I see the Dashboard page!");
         Driver.closeDriver();
     }
+    @Then("user should see {string} page")
+    public void user_should_see_page(String string) {
+        String actual = loginPage.getPageSubTitleText().trim();
+        Assert.assertEquals("Page title is not correct!", string, actual);
+
+    }
+
 
 
     //When user logs in as a "driver"
