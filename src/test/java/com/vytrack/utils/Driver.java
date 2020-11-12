@@ -17,6 +17,16 @@ public class Driver {
     public static WebDriver getDriver() {
         if (driver == null) {
             String browser = ConfigurationReader.getProperty("browser");
+            //            jenkins command: test -Dcucumber.filter.tags="@smoke" -Dbrowser="chrome"
+//            custom environment variables: -Dbrowser
+//            -Dproperty  = then read in java System.getProperty("property")
+//            if env variable was specified
+            if (System.getProperty("browser") != null) {
+//                then change browser type
+//                regardless on value configuration.properties
+                System.out.println("Browser type was changed to: " + System.getProperty("browser"));
+                browser = System.getProperty("browser");
+            }
             switch (browser) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
